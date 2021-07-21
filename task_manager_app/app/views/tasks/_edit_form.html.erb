@@ -1,0 +1,12 @@
+<%= simple_form_for(@task, remote: request.xhr?, html: { data: { modal: true } }) do |f| %>
+  <div class="modal-body">
+    <%= f.input :name , required: true%>
+    <%= f.input :body %>
+    <%= f.input :status %>
+    <%= f.input :start_date, required: true, as: :date, html5: true%>
+    <%= f.input :end_date, as: :date, html5: true%>
+  </div>
+  <div class="modal-footer">
+    <%= f.button :submit, class: 'btn-success' %>
+  </div>
+<% end %>

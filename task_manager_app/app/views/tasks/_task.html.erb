@@ -1,0 +1,17 @@
+<div class="card border-secondary mb-3">
+  <div class="card-header d-flex justify-content-between">
+    <%= task.name.truncate(20) %>
+    <div class="d-flex justify-content-end">
+      <%= link_to 'Edit', edit_task_path(task), class: 'mr-4', data: { modal: true } %>
+      <%= link_to 'Show', task_path(task), class: 'mr-4', data: { modal: true } %>
+      <%= link_to task, data: { confirm: 'Are you sure?' }, method: :delete, class: 'text-dark' do %>
+        <span aria-hidden="true">&times;</span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-body text-secondary">
+    <p class="card-text">
+      <%= task.body %>
+    </p>
+  </div>
+</div>
