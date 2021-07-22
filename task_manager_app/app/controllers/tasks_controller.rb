@@ -1,5 +1,6 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:edit, :update, :destroy, :show]
+  before_action :set_selected_task, only: [:start, :complete, :pausing]
 
   respond_to :html, :json
 
@@ -34,17 +35,20 @@ class TasksController < ApplicationController
   end
 
   def start
-    byebug
-    # @task.start!
-    # respond_modal_with @task, location: tasks_path
+    @current_task.start!
+    redirect_to tasks_url
   end
 
   def complete
-    byebug
-    @task.complete!
+    @current_task.complete!
+    redirect_to tasks_url
   end
 
-
+  def pausing
+    @current_task.pausing!
+    redirect_to tasks_url
+  end
+  
   def destroy
     @task.destroy
     redirect_to tasks_url
@@ -54,6 +58,10 @@ class TasksController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task
       @task = Task.find(params[:id])
+    end
+
+    def set_selected_task
+      @current_task = Task.find(params[:task_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

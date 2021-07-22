@@ -1,1 +1,18 @@
-<p>Hiiiiiiiii</p>
+<div class="modal-header">
+  <h5 class="modal-title"><%= @task&.name%></h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+	<p><%= @task&.body%></p>
+	<br/>
+	<p><%= @task&.status%></p>
+	<br/>
+	<p><%= format_date(@task&.end_date)%></p>
+	<br/>
+	<p><%= format_date(@task&.end_date)%></p>
+</div>
+
+
