@@ -2,7 +2,8 @@ class Task < ApplicationRecord
 	
 	include AASM
 	
-	validates :name,:start_date, :end_date, :user_id, presence: true
+	validates :name,:code,:start_date, :end_date, :user_id, presence: true
+  validates :code, uniqueness: true
   validate :end_date_after_start_date?
 
 	aasm column: :status do
@@ -22,8 +23,8 @@ class Task < ApplicationRecord
   end
 
   def end_date_after_start_date?
-    if end_date < start_date
-      errors.add :end_date, "must be after start date"
+    if (end_date.present? && start_date.present?)
+      errors.add :end_date, "must be after start date" if end_date < start_date
     end
   end
 

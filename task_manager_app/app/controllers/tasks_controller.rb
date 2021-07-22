@@ -1,14 +1,12 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_task, only: [:edit, :update, :destroy, :show]
   before_action :set_selected_task, only: [:start, :complete, :pausing]
 
   respond_to :html, :json
 
   def index
-    # Need to chnage this while adding devise authentication
-      curren_user = User.first
-    # Need to chnage this while adding devise authentication
-    @tasks = Task.order(created_at: :desc).where(user_id: curren_user.id).limit(21)
+    @tasks = Task.order(created_at: :desc).where(user_id: current_user.id).limit(21)
   end
 
   def new
@@ -66,6 +64,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name, :body, :start_date, :end_date).merge(user_id: User.first.id)
+      params.require(:task).permit(:name,:code, :body, :start_date, :end_date).merge(user_id: current_user.id)
     end
 end

@@ -6,13 +6,14 @@
 </div>
 
 <div class="modal-body">
+	<p><%= @task&.code%>
 	<p><%= @task&.body%></p>
 	<br/>
-	<p><%= @task&.status%></p>
+	<p><%= @task&.status&.capitalize%></p>
 	<br/>
-	<p><%= format_date(@task&.end_date)%></p>
+	<p>Start At <%= format_date(@task&.end_date)%></p>
 	<br/>
-	<p><%= format_date(@task&.end_date)%></p>
+	<p>End At   <%= format_date(@task&.end_date)%></p>
 </div>
 
 

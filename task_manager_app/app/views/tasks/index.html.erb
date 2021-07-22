@@ -1,6 +1,13 @@
 <h1>Tasks</h1>
-
+<ul class="nav navbar-top-links navbar-right">
+	<li>
+	<i class="fa fa-sign-out" aria-hidden="true"></i>
+	<%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'btn_logout btn my-2 my-sm-0' %>
+</li>
+</ul>
+<div class="container justify-content-between">
+	<%= link_to 'Add Task', new_task_path, class: 'btn btn-outline-success my-2 my-sm-0', data: { modal: true } %><br/><br/>
+</div>
 <div class="card-columns">
   <%= render @tasks %>
 </div>
-

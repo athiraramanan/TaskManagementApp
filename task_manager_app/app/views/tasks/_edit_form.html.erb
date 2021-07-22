@@ -1,6 +1,7 @@
 <%= simple_form_for(@task, remote: request.xhr?, html: { data: { modal: true } }) do |f| %>
   <div class="modal-body">
     <%= f.input :name , required: true%>
+    <%= f.input :code,  required: true%>
     <%= f.input :body %>
     <%= f.input :status, readonly: true %>
     <%= f.input :start_date, required: true, as: :date, html5: true, required: true%>

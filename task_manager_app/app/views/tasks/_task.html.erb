@@ -1,6 +1,7 @@
+
 <div class="card border-secondary mb-3">
   <div class="card-header d-flex justify-content-between">
-    <%= task.name.truncate(20) %>
+    <%= task.code.truncate(10) %>
     <div class="d-flex justify-content-end">
       <%if (task.status == 'pending' || task.status == 'paused')%>
         <%= link_to task.status, task_start_path(task), class: 'button', method: :put, data: { confirm: 'Are you sure?' } %>
@@ -20,9 +21,13 @@
   </div>
   <div class="card-body text-secondary">
     <p class="card-text">
-      Start Date  <%= format_date(task.start_date) %>
-      <br/>
-      End Date    <%= format_date(task.end_date) %>
+       <%= task.name.truncate(20) %></br>
+      <%if task.status != 'completed'%>
+        <strong> <%=date_of_remaining(task)%></strong> 
+      <%else%>
+       </br>
+      <%end%>
+      </p>
     </p>
   </div>
 </div>
