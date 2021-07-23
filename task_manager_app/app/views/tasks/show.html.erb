@@ -8,12 +8,28 @@
 <div class="modal-body">
 	<p><%= @task&.code%>
 	<p><%= @task&.body%></p>
-	<br/>
-	<p><%= @task&.status&.capitalize%></p>
-	<br/>
-	<p>Start At <%= format_date(@task&.end_date)%></p>
-	<br/>
-	<p>End At   <%= format_date(@task&.end_date)%></p>
+	<p>Start At <%= format_date(@task&.start_date)%></p>
+	<p>End At   <%= format_date(@task&.end_date)%></p><br/>
+	
+	<!-- Comments View Start -->
+		<p class= 'button button2'> Comments</p>	
+		<% @comments.each do |comment| %>
+		  <p><%= comment.body %></p>
+		  <%= link_to 'Edit', edit_comment_path(comment), class: 'button button3', data: { modal: true } %>
+		  <%= link_to comment, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button button4 text-dark' do %>
+        <span aria-hidden="true">&times;</span>
+      <% end %>
+		<% end %>
+	<!-- Comments View End -->
 </div>
+<!-- Comments Form Start-->
+	<div class="form-group">
+	  <%= form_for :comment, :url => tasks_path, method: 'post', onsubmit:"submitForm()", html:{id: 'comment_form' } do |f| %>
+	    <%= f.text_area :comment, class: "form-control spinner" %></br>
+	    <%= f.hidden_field :task_id, :value => @task.id%>
+	    <%= f.submit "POST", class: "btn green", id: 'submit_formula' %>
+	  <% end %>
+	</div>
+<!-- Comments Form End -->
 
 

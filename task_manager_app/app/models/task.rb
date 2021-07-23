@@ -1,7 +1,8 @@
 class Task < ApplicationRecord
 	
 	include AASM
-	
+	has_many :comments, dependent: :destroy
+  
 	validates :name,:code,:start_date, :end_date, :user_id, presence: true
   validates :code, uniqueness: true
   validate :end_date_after_start_date?

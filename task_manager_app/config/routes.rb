@@ -11,11 +11,11 @@ Rails.application.routes.draw do
 			root 'devise/sessions#new', as: :unauthenticated_root
 		end
 	end
-
+	resources :comments
   resources :tasks do
     put 'start'
     put 'complete'
-    put 'pausing'
+    put 'pausing' 
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -14,21 +14,28 @@ class TasksController < ApplicationController
     respond_modal_with @task
   end
 
-  def edit
+  def edit  
     respond_modal_with @task
   end
 
   def update
     @task.update(task_params)
-    respond_modal_with @task, location: tasks_path
+    respond_modal_with @task, location: tasks_path  
   end
 
   def create
-    @task = Task.create(task_params)
-    respond_modal_with @task, location: tasks_path
+    if params['comment'].present? 
+      comment = Comment.create(body: params['comment']['comment'], user_id:  current_user.id, task_id: params['comment']['task_id'])
+      respond_modal_with comment.task, location: tasks_path
+
+    else
+      @task = Task.create(task_params)
+      respond_modal_with @task, location: tasks_path
+    end
   end
 
   def show
+    @comments = Comment.where(task_id: @task.id, user_id: current_user.id)
     respond_modal_with @task
   end
 
@@ -48,14 +55,18 @@ class TasksController < ApplicationController
   end
   
   def destroy
-    @task.destroy
+    @task.destroy   
     redirect_to tasks_url
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
-      @task = Task.find(params[:id])
+      if params['comment'].present?
+        @comment = Comment.find(params['id'])
+      else
+        @task = Task.find(params[:id])
+      end
     end
 
     def set_selected_task
