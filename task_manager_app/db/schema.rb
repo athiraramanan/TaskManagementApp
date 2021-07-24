@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_23_130213) do
+ActiveRecord::Schema.define(version: 2021_07_25_011340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,13 @@ ActiveRecord::Schema.define(version: 2021_07_23_130213) do
     t.text "body"
     t.integer "user_id"
     t.integer "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "task_attachments", force: :cascade do |t|
+    t.integer "task_id"
+    t.string "description_file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,6 +40,8 @@ ActiveRecord::Schema.define(version: 2021_07_23_130213) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "task_file"
+    t.json "description_files"
   end
 
   create_table "users", force: :cascade do |t|

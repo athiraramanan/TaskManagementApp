@@ -9,8 +9,11 @@
 	<p><%= @task&.code%>
 	<p><%= @task&.body%></p>
 	<p>Start At <%= format_date(@task&.start_date)%></p>
-	<p>End At   <%= format_date(@task&.end_date)%></p><br/>
-	
+	<p>End At   <%= format_date(@task&.end_date)%></p>
+	<%@task.description_files.each_with_index do |description_file, index|%>
+		<p><%= link_to 'Description File',task_download_attachment_path(@task.id, index_val:index),class: 'fa fa-download' if description_file.url.present?%><br/></p>
+		<%index += 1%>
+	<%end%>
 	<!-- Comments View Start -->
 		<p class= 'button button2'> Comments</p>	
 		<% @comments.each do |comment| %>
