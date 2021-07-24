@@ -5,6 +5,7 @@
     <%= f.input :body %>
     <%= f.input :start_date, required: true, as: :date, html5: true%>
     <%= f.input :end_date, as: :date, html5: true%>
+    <%= f.input :task_file, as: :file, label: 'Description file', input_html: { multiple: false }%>
   </div>
 
   <div class="modal-footer">

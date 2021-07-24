@@ -59,6 +59,11 @@ class TasksController < ApplicationController
     redirect_to tasks_url
   end
 
+  def download_attachment
+    file_name = File.join(Rails.root, 'public', Task.find(params[:task_id]).task_file.url)
+    send_file file_name, :disposition => 'attachment'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task
@@ -75,6 +80,7 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:name,:code, :body, :start_date, :end_date).merge(user_id: current_user.id)
+      # params.require(:task).permit(:name,:code, :body, :start_date, :end_date, {task_file: []}).merge(user_id: current_user.id)
+      params.require(:task).permit(:name,:code, :body, :start_date, :end_date, :task_file).merge(user_id: current_user.id)
     end
 end
