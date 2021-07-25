@@ -7,6 +7,8 @@ class Task < ApplicationRecord
   validates :code, uniqueness: true
   validate :end_date_after_start_date?
 
+  mount_uploaders :description_files, FileAttachmentUploader
+
 	aasm column: :status do
     state :pending, initial: true
     state :inprogress
