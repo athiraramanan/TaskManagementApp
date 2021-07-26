@@ -1,0 +1,38 @@
+https://www.bigbinary.com/learn-rubyonrails-book/adding-comments-to-tasks
+
+Task management system
+
+Create a new repository using https://github.com/saeloun/plate
+Technical Requirements
+
+It should be a web application.
+Should be Single Page after logging in, an example of how this should look
+https://monosnap.com/file/zcC2HIv9G8G1KiPtE0F8v0YRGzBEcf
+It should have validations.
+It should work like a single-page WEB application and should use Ajax or similar.
+It should have a user authentication solution. The user should only have access to their tasks.
+
+
+I. CRUD operations for task management
+#2 opened 4 days ago by sonamvg ============>   Done 
+
+II. Ability to set a deadline for the task
+#3 opened 4 days ago by sonamvg =============> Done
+
+III. Mark task as done
+#4 opened 4 days ago by sonamvg
+
+IV. Add comments to tasks
+#5 opened 4 days ago by sonamvg
+
+
+V. Attach files to task
+#6 opened 4 days ago by sonamvg
+
+V1 It should have validations.
+
+Add start_date and end_date validations for tasks
+
+
+
+

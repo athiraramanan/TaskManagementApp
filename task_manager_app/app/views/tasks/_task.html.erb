@@ -1,0 +1,33 @@
+
+<div class="card border-secondary mb-3">
+  <div class="card-header d-flex justify-content-between">
+    <%= task.code.truncate(10) %>
+    <div class="d-flex justify-content-end">
+      <%if (task.status == 'pending' || task.status == 'paused')%>
+        <%= link_to task.status, task_start_path(task), class: 'button', method: :put, data: { confirm: 'Are you sure?' } %>
+       <%elsif task.status == 'completed'%>
+        <%= link_to task.status, task_pausing_path(task), class: 'button button1', method: :put, data: { confirm: 'Are you sure?' } %>
+      <%elsif task.status== 'inprogress'%>
+        <%= link_to task.status, task_complete_path(task), class: 'button button2', method: :put, data: { confirm: 'Are you sure?' } %>
+      <%else%>
+        <p class= 'button button2'> <%=task.status%> </p>
+      <%end%>
+      <%= link_to 'Edit', edit_task_path(task), class: 'button button3', data: { modal: true } %>
+      <%= link_to 'Show', task_path(task), class: 'button button3', data: { modal: true } %>
+      <%= link_to task, data: { confirm: 'Are you sure?' }, method: :delete, class: 'button button4 text-dark' do %>
+        <span aria-hidden="true">&times;</span>
+      <% end %>
+    </div>
+  </div>
+  <div class="card-body text-secondary">
+    <p class="card-text">
+       <%= task.name.truncate(20) %></br>
+      <%if task.status != 'completed'%>
+        <strong> <%=date_of_remaining(task)%></strong> 
+      <%else%>
+       </br>
+      <%end%>
+      </p>
+    </p>
+  </div>
+</div>
